@@ -58,6 +58,7 @@ const getScript = (base, targetMockup) => {
         app.activeDocument.saveAs(jpgSaveFile, jpgOptns, true, Extension.LOWERCASE);
         app.activeDocument.save();
         app.activeDocument.close(SaveOptions.SAVECHANGES);
+        // app.purge(PurgeTarget.ALLCACHES);
     `;
     return {
         jsScript,
@@ -161,7 +162,8 @@ MainController.exportProject = async (req, res) => {
     let { jsScript, finalOutput } = getScript(projectdir, targetMockup);
     let scriptPath = path.join(projectdir, "ready.jsx");
     fs.writeFileSync(scriptPath, jsScript);
-    let cmd = `cd "${projectdir}" && photoshop ready.jsx`;
+    let cmd = `photoshop ${scriptPath}`;
+    console.log(cmd);
     exec(cmd);
     await waitUntillItsCreated(path.join(projectdir, finalOutput));
     res.status(200).json({
