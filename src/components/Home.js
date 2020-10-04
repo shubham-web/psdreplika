@@ -15,7 +15,7 @@ class Home extends Component {
         }
         return (
             <div className="pr_container">
-                <h1 className="centered">Choose One of the Mockups Below.</h1>
+                <h1 className="centered">Choose One of the Mockups Below</h1>
                 <div className="pr_mockuplist">
                     {this.mockups.map((mockcup) => {
                         return (
