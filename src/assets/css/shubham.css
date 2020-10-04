@@ -70,11 +70,24 @@ body {
     grid-template-columns: 1.5fr 1fr;
     gap: 20px;
 }
+.pr_live_mockup_preview {
+    position: relative;
+}
 .pr_live_mockup_preview img {
     width: 100%;
     border-radius: 2px;
     box-shadow: -15px -15px 20px rgba(255, 255, 255, 0.2),
         15px 15px 20px rgba(0, 0, 0, 0.5);
+}
+.pr_preview_loader {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
 }
 .pr_badge {
     font-family: monospace;
