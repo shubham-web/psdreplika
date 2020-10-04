@@ -141,7 +141,15 @@ const waitUntillItsCreated = async (path) => {
     return new Promise((resolve, reject) => {
         const check = () => {
             if (fs.existsSync(path)) {
-                resolve(path);
+                let stats = fs.statSync(path);
+                let fileSizeInBytes = stats["size"];
+                if (fileSizeInBytes > 0) {
+                    resolve(path);
+                } else {
+                    setTimeout(() => {
+                        check();
+                    }, 1000);
+                }
             } else {
                 setTimeout(() => {
                     check();
