@@ -1,5 +1,6 @@
 const config = require("../config/config");
 const path = require("path");
+const sharp = require("sharp");
 const { v4: uuid } = require("uuid");
 const fs = require("fs-extra");
 const { exec } = require("child_process");
@@ -109,17 +110,32 @@ MainController.uploadLayer = async (req, res) => {
     }
 
     let file = req.files.layer.tempFilePath;
-    fs.rename(
-        file,
-        path.join(projectdir, `${req.params.layerid}.png`),
-        function (err) {
-            if (err) console.log("ERROR: " + err);
-        }
+    let resized = path.join(__dirname, "..", "tmp", `${uuid()}.png`);
+
+    let targetLayer = targetMockup.editableLayers.find(
+        (l) => l.id === req.params.layerid
     );
-    res.status(200).json({
-        success: 1,
-        projectid: projectid,
-    });
+    sharp(file)
+        .resize({ height: targetLayer.px.h, width: targetLayer.px.w })
+        .toFile(resized)
+        .then(function (newFileInfo) {
+            fs.rename(
+                resized,
+                path.join(projectdir, `${req.params.layerid}.png`),
+                function (err) {
+                    if (err) console.log("ERROR: " + err);
+                }
+            );
+            res.status(200).json({
+                success: 1,
+                projectid: projectid,
+            });
+        })
+        .catch(function (err) {
+            res.status(500).json({
+                message: "error while resizing image",
+            });
+        });
 };
 const waitUntillItsCreated = async (path) => {
     return new Promise((resolve, reject) => {
