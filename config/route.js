@@ -6,7 +6,7 @@ const controllers = {
 let requests = {};
 requests.apiPrefix = "";
 requests.get = {
-    "/export/:projectid": controllers.main.exportProject,
+    "/export/:mockupid/:projectid": controllers.main.exportProject,
 };
 
 requests.post = {
