@@ -1,10 +1,10 @@
 # psdreplika
 Similar to placeit.net, A Web App made as a Proof of Concept that provides options to change images in product mockups like Mug, T-Shirt, Book etc.
 
-It uses photoshop behind the scenes to update smart objects, hence requires server having photoshop installed.
+## It uses photoshop behind the scenes to update smart objects, hence requires server having photoshop installed.
 For installation please check saperate branches. 
-([Frontend](https://github.com/shubham-web/psdreplika/tree/frontend))
-([Backend](https://github.com/shubham-web/psdreplika/tree/backend))
+[Frontend](https://github.com/shubham-web/psdreplika/tree/frontend)
+[Backend](https://github.com/shubham-web/psdreplika/tree/backend)
 
 ## Step 1 - Select Mockup
 ![image](https://user-images.githubusercontent.com/52674815/169365532-cdf051c6-8edf-466a-ab2c-c3110430044a.png)
