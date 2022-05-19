@@ -1,6 +1,5 @@
-In the project directory, you can run:
-
-## `npm start`
+## Installation Guide
+In the project directory, you can run `npm start` after installing dependencies with `npm install`:
 
 It runs the backend server, Open [http://localhost](http://localhost) to verify it.
 
